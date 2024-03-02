@@ -1,0 +1,57 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+}
+
+<div>
+	<h1 class="display-4">Welcome</h1>
+	<textarea id="code_editor"></textarea>
+	<button onclick="Compile()">Compile</button>
+</div>
+
+@section Scripts {
+	<script>
+		var CodeEditor;
+		$(document).ready(() => {
+
+			var nums = "0123456789", space = "          ";
+			var colors = ["#fcc", "#f5f577", "#cfc", "#aff", "#ccf", "#fcf"];
+			var rulers = [], value = "";
+			for (var i = 1; i <= 1; i++) {
+				rulers.push({ color: colors[i], column: i * 10, lineStyle: "dashed" });
+				for (var j = 1; j < i; j++) value += space;
+				value += nums + "\n";
+			}
+
+			CodeMirror.commands.autocomplete = function (cm) {
+				cm.showHint();
+			}
+
+			CodeEditor = CodeMirror.fromTextArea(document.querySelector("#code_editor"), {
+				value: "function myScript(){return 100;}\n",
+				mode: "text/x-csrc",
+				theme: "shadowfox",
+				lineNumbers: true,
+				rulers: rulers,
+				indentUnit: 4,
+				tabSize: 4,
+				autoCloseBrackets: true,
+				lineWrapping: true,
+				smartIndent: true,
+				matchBrackets: true,
+				indentWithTabs: true,
+			});
+		});
+
+		function Compile() {
+			$.ajax({
+				url: '/Home/CompileCode',
+				method: 'post',
+				dataType: 'text',
+				data: { code: CodeEditor.getValue() },
+				success: function (data) {
+					alert(data);
+				}
+			});
+		}
+	</script>
+}
