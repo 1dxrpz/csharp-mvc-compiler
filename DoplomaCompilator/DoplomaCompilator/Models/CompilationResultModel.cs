@@ -7,11 +7,17 @@
 		public string ErrorMessage { get; set; }
 	}
 
-	public class CompilationResultModel
-	{
-		public List<ErrorModel> Errors { get; set; } = [];
-		public bool BuildSucceed { get; set; }
-		public string ElapsedTime { get; set; } = string.Empty;
-		public string Result { get; set; } = string.Empty;
-	}
+    public class CompilationResultModel
+    {
+        public List<ErrorModel> Errors { get; set; } = [];
+        public bool BuildSucceed { get; set; }
+        public string ElapsedTime { get; set; } = string.Empty;
+        public string Result { get; set; } = string.Empty;
+    }
+    public class TestResultModel
+    {
+        public string ElapsedTime { get; set; } = string.Empty;
+        public int Passed { get; set; }
+        public int Total { get; set; }
+    }
 }

@@ -13,7 +13,6 @@ public class Program
 }
     </textarea>
     <button onclick="Compile()" class="compile_button">Run <i class="fa-solid fa-play"></i></button>
-    <div class="compile_result"></div>
 
     <div class="compilation_stage" data-stage="build" data-status="default">
         <div class="title">
@@ -121,7 +120,7 @@ public class Program
         function SetResult(stage, message, elapsed) {
             document.querySelector(`.result[data-stage='${stage}']`).innerHTML =
                 `<div class="message">${message}</div>
-                                <div class="elapsed">Elapsed time: ${elapsed}</div>`;
+                                        <div class="elapsed">Elapsed time: ${elapsed}</div>`;
         }
         var buildStage = document.querySelector(".compilation_stage[data-stage='build']");
         var runStage = document.querySelector(".compilation_stage[data-stage='run']");
@@ -183,6 +182,23 @@ public class Program
             runStage.setAttribute("data-status", "success");
             testsStage.setAttribute("data-status", "wait");
 
+            var tests_result = JSON.parse(await $.ajax({
+                url: '/Home/RunTests',
+                method: 'post',
+                dataType: 'text',
+                success: function (data) {
+                }
+            }));
+
+            console.log(tests_result);
+
+            if (tests_result.passed != tests_result.total) {
+                testsStage.setAttribute("data-status", "fail");
+                SetResult("tests", `Passed ${tests_result.passed} of ${tests_result.total} test`, run_result.elapsedTime);
+            } else {
+                SetResult("tests", `All tests passed`, tests_result.elapsedTime);
+                testsStage.setAttribute("data-status", "success");
+            }
         }
     </script>
 }
