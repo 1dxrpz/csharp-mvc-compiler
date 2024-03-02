@@ -1,9 +1,9 @@
-using System;
-
 public class Program
 {
-	private static void Main(string[] args)
-	{
-		Console.WriteLine("Negri Negri!");
-	}
+    private static void Main(string[] args)
+    {
+		ыфва
+        Console.WriteLine("Hello, World!");
+    }
 }
+    

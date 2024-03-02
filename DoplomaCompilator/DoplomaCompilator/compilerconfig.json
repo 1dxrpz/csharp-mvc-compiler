@@ -1,0 +1,6 @@
+﻿[
+    {
+        "outputFile": "wwwroot/css/compilator.min.css",
+        "inputFile": "wwwroot/scss/compilator.scss"
+    }
+]
