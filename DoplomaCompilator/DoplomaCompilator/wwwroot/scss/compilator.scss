@@ -1,163 +1,246 @@
 body {
-    background: #2a2a2e;
+	background: #2a2a2e;
 }
 
 .compile_button {
-    margin: 10px;
-    box-sizing: border-box;
-    color: #eee;
-    padding: 10px 15px;
-    background: rgba(0, 0, 0, .1);
-    border: 1px solid rgba(255, 255, 255, .1);
-    border-radius: 10px;
+	margin: 10px;
+	box-sizing: border-box;
+	color: #eee;
+	padding: 10px 15px;
+	background: rgba(0, 0, 0, .1);
+	border: 1px solid rgba(255, 255, 255, .1);
+	border-radius: 10px;
 
-    &:hover {
-        background: rgba(0, 0, 0, .2);
-    }
+	&:hover {
+		background: rgba(0, 0, 0, .2);
+	}
 
-    &:active {
-        background: rgba(0, 0, 0, .3);
-    }
+	&:active {
+		background: rgba(0, 0, 0, .3);
+	}
 
-    font-weight: bold;
+	font-weight: bold;
 
-    i {
-        margin: 0 0 0 5px;
-        font-size: 10pt;
-    }
+	i {
+		margin: 0 0 0 5px;
+		font-size: 10pt;
+	}
 }
 
 .compilation_stage {
-    width: 500px;
-    margin: 10px;
-    box-sizing: border-box;
-    color: #eee;
-    padding: 10px 15px;
-    background: rgba(0, 0, 0, .1);
-    position: relative;
-    border: 1px solid rgba(255, 255, 255, .1);
-    border-radius: 10px;
+	width: 500px;
+	margin: 10px;
+	box-sizing: border-box;
+	color: #eee;
+	padding: 10px 15px;
+	background: rgba(0, 0, 0, .1);
+	position: relative;
+	border: 1px solid rgba(255, 255, 255, .1);
+	border-radius: 10px;
 
-    .message {
-        margin-top: 10px;
-        border-top: 1px solid rgba(255, 255, 255, .1);
-        padding: 10px;
-        margin-bottom: 0px;
+	.message {
+		margin-top: 10px;
+		border-top: 1px solid rgba(255, 255, 255, .1);
+		padding: 10px;
+		margin-bottom: 0px;
 
-        &[data-visible="false"] {
-            display: none;
-        }
+		&[data-visible="false"] {
+			display: none;
+		}
 
-        &[data-visible="true"] {
-            display: block;
-        }
-    }
+		&[data-visible="true"] {
+			display: block;
+		}
+	}
 
-    .elapsed {
-        padding: 10px;
-        color: #eee;
-        opacity: .5;
-        font-weight: bold;
-        font-size: 10pt;
-    }
+	.elapsed {
+		padding: 10px;
+		color: #eee;
+		opacity: .5;
+		font-weight: bold;
+		font-size: 10pt;
+	}
 
-    .title {
-        display: flex;
-        font-size: 14pt;
+	.title {
+		display: flex;
+		font-size: 14pt;
+		user-select: none;
 
-        .topic {
-            font-weight: bold;
-        }
+		.topic {
+			font-weight: bold;
+		}
 
-        .icon {
-            margin-right: 10px;
-            display: none;
+		.icon {
+			margin-right: 10px;
+			display: none;
 
-            &.default {
-                display: block;
-            }
+			&.default {
+				display: block;
+			}
 
-            &.wait {
-                i {
-                    animation: 2s loading linear infinite;
-                }
-            }
-        }
-    }
+			&.wait {
+				i {
+					animation: 2s loading linear infinite;
+				}
+			}
+		}
+	}
 
-    &[data-status="default"] {
-        color: rgba(255, 255, 255, .5);
-    }
+	&[data-status="default"] {
+		color: rgba(255, 255, 255, .5);
+	}
 
-    &[data-status="wait"] {
-        color: rgba(255, 255, 255, .5);
+	&[data-status="wait"] {
+		color: rgba(255, 255, 255, .5);
 
-        .title {
-            .icon {
-                display: none;
+		.title {
+			.icon {
+				display: none;
 
-                &.wait {
-                    display: block;
-                }
-            }
-        }
-    }
+				&.wait {
+					display: block;
+				}
+			}
+		}
+	}
 
-    &[data-status="success"] {
-        background: rgba(0, 255, 0, .1);
+	&[data-status="success"] {
+		background: rgba(0, 255, 0, .1);
 
-        .title {
-            .icon {
-                display: none;
+		.title {
+			.icon {
+				display: none;
 
-                &.success {
-                    display: block;
-                }
-            }
+				&.success {
+					display: block;
+				}
+			}
 
-            color: greenyellow;
-        }
-    }
+			color: greenyellow;
+		}
+	}
 
-    &[data-status="fail"] {
-        background: rgba(255, 0, 0, .1);
+	&[data-status="fail"] {
+		background: rgba(255, 0, 0, .1);
 
-        .title {
-            .icon {
-                display: none;
+		.title {
+			.icon {
+				display: none;
 
-                &.fail {
-                    display: block;
-                }
-            }
+				&.fail {
+					display: block;
+				}
+			}
 
-            color: orangered;
-        }
+			color: orangered;
+		}
 
-        .error {
-            display: flex;
+		.error {
+			display: flex;
 
-            .line {
-                font-weight: bolder;
-                margin-right: 10px;
+			.line {
+				font-weight: bolder;
+				margin-right: 10px;
 
-                &:before {
-                    content: "Line ";
-                }
+				&:before {
+					content: "Line ";
+				}
 
-                &:after {
-                    content: ": ";
-                }
-            }
-        }
-    }
+				&:after {
+					content: ": ";
+				}
+			}
+		}
+	}
+}
+
+.CodeMirror {
+	width: 100%;
+	height: 100% !important;
+}
+
+.info_wrapper {
+	border-left: 1px solid rgba(255, 255, 255, .1);
+	width: 100%;
+	padding: 10px;
+	overflow-x: hidden;
+	overflow-y: auto;
+
+	.instructions {
+		padding: 10px;
+		color: #eee;
+
+
+		.notes {
+			list-style: none;
+
+			li {
+				position: relative;
+
+				&:before {
+					content: "";
+					display: block;
+					position: absolute;
+					left: -20px;
+					top: 8px;
+					width: 10px;
+					transform: scale(.7);
+					height: 10px;
+					border-radius: 100%;
+					background: rgba(255, 255, 255, .2);
+				}
+			}
+		}
+
+		.topic {
+			font-size: 18pt;
+			font-weight: bold;
+			padding: 10px 5px;
+		}
+
+		.heading {
+			font-size: 14pt;
+			font-weight: bold;
+			padding: 10px 5px;
+		}
+
+		h2 {
+			font-weight: 600 !important;
+		}
+
+		.task_description {
+			padding: 5px;
+			font-size: 12pt;
+		}
+
+		.task_inputs, .task_outputs {
+			font-family: Consolas;
+			background: #131414;
+			padding: 10px 20px;
+			border-radius: 5px;
+		}
+
+		.task_description, .task_inputs, .task_outputs {
+			margin-bottom: 30px;
+		}
+	}
+}
+
+.wrapper {
+	position: absolute;
+	left: 0;
+	right: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
 }
 
 @keyframes loading {
-    0%{
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
 }

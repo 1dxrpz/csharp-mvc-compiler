@@ -171,8 +171,6 @@ namespace DoplomaCompilator.Controllers
                 result.BuildSucceed = true;
             }
 
-            Console.WriteLine(buildResult);
-
             return result;
         }
 
